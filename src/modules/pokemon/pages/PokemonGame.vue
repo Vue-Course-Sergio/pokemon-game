@@ -18,7 +18,12 @@
     />
 
     <!-- Pokemon Options -->
-    <PokemonOptions :pokemon-options="pokemonOptions" @selected-option="checkAnswer" />
+    <PokemonOptions
+      :pokemon-options="pokemonOptions"
+      :block-selection="gameStatus !== GameStatus.PLAYING"
+      :correct-answer="randomPokemon.id"
+      @selected-option="checkAnswer"
+    />
   </section>
 </template>
 
