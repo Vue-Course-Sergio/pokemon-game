@@ -37,7 +37,6 @@ export const usePokemonGame = () => {
   };
 
   onMounted(async () => {
-    await new Promise((r) => setTimeout(r, 1000));
     pokemons.value = await getPokemons();
     getNextOptions();
   });
