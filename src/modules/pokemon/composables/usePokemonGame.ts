@@ -12,6 +12,8 @@ export const usePokemonGame = () => {
   const incorrectAnswers = ref<number>(0);
   const isPokemonShiny = ref<boolean>(false);
 
+  let pokemonLimit: number = 151;
+
   const randomPokemon = computed(() => {
     const randomIndex = Math.floor(Math.random() * pokemonOptions.value.length);
     return pokemonOptions.value[randomIndex];
@@ -19,7 +21,7 @@ export const usePokemonGame = () => {
   const isLoading = computed(() => pokemons.value.length === 0);
 
   const getPokemons = async (): Promise<Pokemon[]> => {
-    const response = await pokemonApi.get<PokemonListResponse>('?limit=151');
+    const response = await pokemonApi.get<PokemonListResponse>(`?limit=${pokemonLimit}`);
 
     const pokemonsArray = response.data.results.map((pokemon) => {
       const urlParts = pokemon.url.split('/');
@@ -37,6 +39,8 @@ export const usePokemonGame = () => {
 
   const getNextRound = async (howMany: number = 4) => {
     if (pokemons.value.length <= 3) {
+      pokemonLimit += 100;
+      if (pokemonLimit > 1302) pokemonLimit = 1302;
       pokemons.value = await getPokemons();
     }
 

@@ -34,8 +34,6 @@ const pokemonSound = computed(
   () =>
     `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${props.pokemonId}.ogg`,
 );
-
-console.log(props.showPokemon);
 </script>
 
 <style scoped>
