@@ -59,7 +59,6 @@ export const usePokemonGame = () => {
       correctAnswers.value++;
 
       if (!pokemonFounded.value.includes(pokemonId)) {
-        console.log(pokemonId);
         pokemonFounded.value.push(pokemonId);
       }
 
