@@ -2,6 +2,7 @@
   <section>
     <img v-if="!showPokemon" :src="pokemonImage" class="brightness-0" />
     <img v-else :src="pokemonImage" class="fade-in" />
+    <audio :src="pokemonSound" autoplay></audio>
   </section>
 </template>
 
@@ -21,6 +22,13 @@ const pokemonImage = computed(
   () =>
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`,
 );
+
+const pokemonSound = computed(
+  () =>
+    `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${props.pokemonId}.ogg`,
+);
+
+console.log(props.showPokemon);
 </script>
 
 <style scoped>
