@@ -38,7 +38,7 @@ const pokemonSound = computed(
 
 <style scoped>
 img {
-  height: 300px;
+  height: 200px;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
