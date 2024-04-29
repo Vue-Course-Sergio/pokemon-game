@@ -8,6 +8,9 @@ export const usePokemonGame = () => {
   const pokemons = ref<Pokemon[]>([]);
   const pokemonOptions = ref<Pokemon[]>([]);
 
+  const correctAnswers = ref<number>(0);
+  const incorrectAnswers = ref<number>(0);
+
   const randomPokemon = computed(() => {
     const randomIndex = Math.floor(Math.random() * pokemonOptions.value.length);
     return pokemonOptions.value[randomIndex];
@@ -46,12 +49,18 @@ export const usePokemonGame = () => {
     gameStatus.value = hasWon ? GameStatus.WON : GameStatus.LOST;
 
     if (gameStatus.value === GameStatus.WON) {
+      correctAnswers.value++;
+
       confetti({
         particleCount: 100,
         spread: 100,
         origin: { y: 0.6 },
       });
+
+      return;
     }
+
+    incorrectAnswers.value++;
   };
 
   onMounted(async () => {
@@ -64,6 +73,8 @@ export const usePokemonGame = () => {
     isLoading,
     pokemonOptions,
     randomPokemon,
+    correctAnswers,
+    incorrectAnswers,
 
     //Methods
     getNextRound,
