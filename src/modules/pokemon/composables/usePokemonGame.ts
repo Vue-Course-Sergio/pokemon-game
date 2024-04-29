@@ -10,6 +10,7 @@ export const usePokemonGame = () => {
 
   const correctAnswers = ref<number>(0);
   const incorrectAnswers = ref<number>(0);
+  const isPokemonShiny = ref<boolean>(false);
 
   const randomPokemon = computed(() => {
     const randomIndex = Math.floor(Math.random() * pokemonOptions.value.length);
@@ -39,6 +40,7 @@ export const usePokemonGame = () => {
       pokemons.value = await getPokemons();
     }
 
+    isPokemonShiny.value = Math.random() < 0.5;
     gameStatus.value = GameStatus.PLAYING;
     pokemonOptions.value = pokemons.value.slice(0, howMany);
     pokemons.value = pokemons.value.slice(howMany);
@@ -75,6 +77,7 @@ export const usePokemonGame = () => {
     randomPokemon,
     correctAnswers,
     incorrectAnswers,
+    isPokemonShiny,
 
     //Methods
     getNextRound,

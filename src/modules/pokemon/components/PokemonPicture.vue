@@ -1,7 +1,7 @@
 <template>
   <section>
     <img v-if="!showPokemon" :src="pokemonImage" class="brightness-0" />
-    <img v-else :src="pokemonImage" class="fade-in" />
+    <img v-else :src="!shinyPokemon ? pokemonImage : shinyPokemonImage" class="fade-in" />
     <audio :src="pokemonSound" autoplay></audio>
   </section>
 </template>
@@ -12,15 +12,22 @@ import { computed } from 'vue';
 interface Props {
   pokemonId: number;
   showPokemon?: boolean;
+  shinyPokemon?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showPokemon: true,
+  shinyPokemon: false,
 });
 
 const pokemonImage = computed(
   () =>
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${props.pokemonId}.svg`,
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemonId}.png`,
+);
+
+const shinyPokemonImage = computed(
+  () =>
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${props.pokemonId}.png`,
 );
 
 const pokemonSound = computed(
@@ -33,7 +40,7 @@ console.log(props.showPokemon);
 
 <style scoped>
 img {
-  height: 200px;
+  height: 300px;
   user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

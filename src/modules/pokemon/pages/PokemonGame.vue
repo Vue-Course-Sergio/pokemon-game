@@ -18,6 +18,7 @@
     <PokemonPicture
       :pokemon-id="randomPokemon.id"
       :show-pokemon="gameStatus !== GameStatus.PLAYING"
+      :shiny-pokemon="isPokemonShiny"
     />
 
     <!-- Pokemon Options -->
@@ -49,6 +50,7 @@ const {
   getNextRound,
   correctAnswers,
   incorrectAnswers,
+  isPokemonShiny,
 } = usePokemonGame();
 </script>
 
