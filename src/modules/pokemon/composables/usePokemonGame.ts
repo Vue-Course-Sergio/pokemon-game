@@ -40,8 +40,6 @@ export const usePokemonGame = () => {
 
   const getNextRound = async (howMany: number = 4) => {
     if (pokemons.value.length <= 3) {
-      pokemonLimit += 100;
-      if (pokemonLimit > 1302) pokemonLimit = 1302;
       pokemons.value = await getPokemons();
     }
 
@@ -60,6 +58,11 @@ export const usePokemonGame = () => {
 
       if (!pokemonFounded.value.includes(pokemonId)) {
         pokemonFounded.value.push(pokemonId);
+      }
+
+      if (pokemonFounded.value.length === pokemonLimit) {
+        pokemonLimit += 100;
+        if (pokemonLimit > 1302) pokemonLimit = 1302;
       }
 
       confetti({
