@@ -30,7 +30,11 @@
     />
 
     <!-- Game Points -->
-    <PokemonPoints :correct-answers="correctAnswers" :incorrect-answers="incorrectAnswers" />
+    <PokemonPoints
+      :correct-answers="correctAnswers"
+      :incorrect-answers="incorrectAnswers"
+      :founded="pokemonFounded.length"
+    />
   </section>
 </template>
 
@@ -46,6 +50,7 @@ const {
   randomPokemon,
   gameStatus,
   pokemonOptions,
+  pokemonFounded,
   checkAnswer,
   getNextRound,
   correctAnswers,

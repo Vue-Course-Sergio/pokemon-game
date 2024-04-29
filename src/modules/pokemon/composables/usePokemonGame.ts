@@ -7,6 +7,7 @@ export const usePokemonGame = () => {
   const gameStatus = ref<GameStatus>(GameStatus.PLAYING);
   const pokemons = ref<Pokemon[]>([]);
   const pokemonOptions = ref<Pokemon[]>([]);
+  const pokemonFounded = ref<number[]>([]);
 
   const correctAnswers = ref<number>(0);
   const incorrectAnswers = ref<number>(0);
@@ -57,6 +58,11 @@ export const usePokemonGame = () => {
     if (gameStatus.value === GameStatus.WON) {
       correctAnswers.value++;
 
+      if (!pokemonFounded.value.includes(pokemonId)) {
+        console.log(pokemonId);
+        pokemonFounded.value.push(pokemonId);
+      }
+
       confetti({
         particleCount: 100,
         spread: 100,
@@ -78,6 +84,7 @@ export const usePokemonGame = () => {
     gameStatus,
     isLoading,
     pokemonOptions,
+    pokemonFounded,
     randomPokemon,
     correctAnswers,
     incorrectAnswers,

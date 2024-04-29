@@ -1,6 +1,7 @@
 <template>
   <section class="mt-5">
     <button disabled="true" class="correct">Aciertos: {{ correctAnswers }}</button>
+    <button disabled="true" class="founded">Encontrados: {{ founded }}</button>
     <button disabled="true" class="incorrect">Fallos: {{ incorrectAnswers }}</button>
   </section>
 </template>
@@ -9,11 +10,13 @@
 interface Props {
   correctAnswers: number;
   incorrectAnswers: number;
+  founded: number;
 }
 
 withDefaults(defineProps<Props>(), {
   correctAnswers: 0,
   incorrectAnswers: 0,
+  founded: 0,
 });
 </script>
 
@@ -28,5 +31,9 @@ button {
 
 .incorrect {
   @apply bg-red-300;
+}
+
+.founded {
+  @apply bg-yellow-300;
 }
 </style>
