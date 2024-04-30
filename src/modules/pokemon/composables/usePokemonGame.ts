@@ -43,7 +43,7 @@ export const usePokemonGame = () => {
       pokemons.value = await getPokemons();
     }
 
-    isPokemonShiny.value = Math.random() > 0.8;
+    isPokemonShiny.value = Math.random() > 0.9;
     gameStatus.value = GameStatus.PLAYING;
     pokemonOptions.value = pokemons.value.slice(0, howMany);
     pokemons.value = pokemons.value.slice(howMany);
