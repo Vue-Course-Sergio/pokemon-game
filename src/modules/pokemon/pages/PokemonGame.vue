@@ -9,7 +9,7 @@
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5 text-3xl">¿Quién es este Pokémon?</h1>
-
+    <h2 v-if="isPokemonShiny && gameStatus !== GameStatus.PLAYING">⭐</h2>
     <div class="h-20">
       <button v-if="gameStatus !== GameStatus.PLAYING" @click="getNextRound()">NUEVO JUEGO</button>
     </div>
