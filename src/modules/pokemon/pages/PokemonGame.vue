@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="isLoading || randomPokemon.id === null"
+    v-if="isLoading || randomPokemon?.id === null"
     class="flex flex-col justify-center items-center w-screen h-screen"
   >
     <h1 class="text-3xl">Espere por favor</h1>
@@ -16,7 +16,13 @@
       </h2>
     </div>
     <div class="h-20">
-      <button v-if="gameStatus !== GameStatus.PLAYING" @click="getNextRound()">NUEVO JUEGO</button>
+      <button
+        v-if="gameStatus !== GameStatus.PLAYING"
+        @click="getNextRound()"
+        data-test-id="btn-new-game"
+      >
+        NUEVO JUEGO
+      </button>
     </div>
 
     <!-- Pokemon Picture -->
